@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+  <title>Mellow-D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/favicon.png">
+  <link href="css/style.min.css" rel="stylesheet" media="screen">
+  <link href="css/style.responsive-min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Signika:300normal,400normal,600normal,700normal' rel='stylesheet' type='text/css'>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/fb.js"></script>
+  <script src="js/yt.js"></script>
+</head>
+
+<body>
+
+  <h1 id = 'logo'><img src = 'img/logoWhite2.png' width = '450'/></h1>
+  <br>
+
+  <h1 id = 'instruction'>Talk to me!  Or request a song. &nbsp;
+  <img class = 'microphone' src = 'img/Microphone.png' width = '30'/>
+  </h1>
+
+  <div class = 'buttons'>
+  <span style = 'font-size: 16pt; color: white'> Want more accurate analysis? </span> &nbsp; &nbsp; 
+  <div class = "facebook" onclick="fb_login();">   <a>Connect</a></div> &nbsp; &nbsp; 
+  <div class = "gmail"    onclick="gmail_login();"><a>Log in</a></div> &nbsp; &nbsp; 
+  <div class = "spotify"    onclick="spotify_login();"><a>Import</a></div> &nbsp; &nbsp; 
+  </div>
+
+  <div class = 'welcome-container' style = 'font-size: 16pt; color: white'>
+      <span id = 'propic'></span> <span class = 'welcome'></span> &nbsp; &nbsp; &nbsp;
+  </div>
+
+  <textarea display = "none" id="transcription" rows="3" cols="75" maxlength = "140"
+  placeholder="How are you feeling? Tell me about your day."></textarea>
+
+  <div id="result"></div>
+
+  <div id="player"></div>
+  <script src="https://www.youtube.com/player_api"></script>
+
+  <span id="ws-unsupported" class="hidden">API not supported</span>
+
+  <div class = 'footer'>Conceived and created by Landon Carter, Lauren Huang, Runpeng Liu, and Kyle Saleeby (MIT '17)</div>
+
+</body>
+
+<script>
+var player;
+var recognizer;        
+var lastword = "";
+var speaking = false;
+var transcription = document.getElementById('transcription');
+var voices = speechSynthesis.getVoices();
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '712879642132633',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.1',
+      status     : true
+    });
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=712879642132633&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+
+function clearAllTimeouts(){
+  var id = window.setTimeout(function() {}, 0);
+  while (id--) {
+    window.clearTimeout(id); 
+  }
+}
+
+window.SpeechRecognition = window.SpeechRecognition       ||
+window.webkitSpeechRecognition ||
+null;
+
+recognizer = new window.SpeechRecognition();
+
+        // Recogniser doesn't stop listening even if the user pauses
+        recognizer.continuous = false;
+        recognizer.start();
+
+        // Start recognising
+        recognizer.onresult = function(event) {
+          console.log('Starting recognition');
+          var message = event.results[event.results.length-1][0].transcript;
+          transcription.textContent += message;
+          lastword = message.substr(0, message.lastIndexOf(' '))
+          if (true){
+           speaking = true;
+           sendMessage($("#transcription").val());
+           lastword = "";
+           speaking = false;
+         } else{
+          setTimeout(function(){
+            transcription.textContent = '';
+            recognizer.start();
+          }
+          , 2000)
+        }
+        if (speaking) {
+          transcription.textContent = '';
+          for (var i = event.resultIndex; i < event.results.length; i++) {
+            console.log(event.results[i][0].transcript)
+              //lastword = event.results[i][0].transcript;
+              transcription.textContent += event.results[i][0].transcript;
+            }
+          }
+        };
+
+      $(document).keypress(function(e) {
+        if(e.which == 13) {
+          sendMessage($("#transcription").val())
+        }
+      });
+
+      function randomPropertyInObject(object) {
+        var keys = Object.keys(object);
+        return keys[Math.floor(keys.length * Math.random())];
+      }
+
+      function speech(message) {
+       console.log('Speaking ... ' + message);
+       recognizer.stop(); 
+       u = new SpeechSynthesisUtterance();
+       console.log(speechSynthesis.getVoices());
+       var UK_female = speechSynthesis.getVoices()[2];
+       u.default = false;
+       u.voice = UK_female;
+       u.text = message;
+       u.lang = 'en-GB';
+       u.rate = 1.2;
+       u.pitch = 2.0;
+       u.onend = function(event) {
+         console.log('finished speaking');
+         player.unMute();
+      };
+       speechSynthesis.speak(u);
+     }
+
+     function startConv(name) {
+      say = ['Hi' + name + ', how are you?', 'Hi' + name + ', how are you feeling today?', 
+      'Hello' + name + ', how was your day?', "Hey" + name + ", what's up?", "Hi there, what's going on?", 
+      'Hello' + name + ', how are you doing today?', 'How are you feeling right now' + name + '?'];
+      starter = say[Math.floor(say.length * Math.random())];
+      $("#result").html(starter);
+      speech(starter);
+      $("#result").fadeIn(600, function() {;
+       $.ajax({
+        url: 'patronus?Body=restart&reset=true',
+        success: function(data){
+          console.log(data);
+          setTimeout( function () {
+            recognizer = new window.SpeechRecognition();
+            recognizer.continuous = false;
+            recognizer.start();
+            recognizer.onresult = function(event) {
+              console.log('Starting recognition');
+              var message = event.results[event.results.length-1][0].transcript;
+              transcription.textContent += message;
+              lastword = message.substr(0, message.lastIndexOf(' '))
+              speaking = true;
+              console.log($('#transcription').val());
+              sendMessage(message);
+              lastword = "";
+              speaking = false;
+              if (speaking) {
+                transcription.textContent = '';
+                for (var i = event.resultIndex; i < event.results.length; i++) {
+                  console.log(event.results[i][0].transcript)
+              //lastword = event.results[i][0].transcript;
+              transcription.textContent += event.results[i][0].transcript;
+            }
+          }
+        };
+      }, 2000);
+}
+});
+});
+}
+
+        function tooShort(message){
+  $.ajax({
+        url: 'creepy?exchange=1',
+        success: function(data){
+          console.log(data);
+          $('#result').hide();
+          $('#result').html(data);
+          response = data;
+          if (response.lastIndexOf('@')>-1) {
+            response = response.substring(response.lastIndexOf('@')+1);
+          }
+          speech(response);
+        }
+      });
+  setTimeout(function(){
+    $.ajax({
+        url: 'creepy?exchange=2',
+        success: function(data){
+          console.log(data);
+          $('#result').hide();
+          $('#result').html(data);
+          response = data;
+          if (response.lastIndexOf('@')>-1) {
+            response = response.substring(response.lastIndexOf('@')+1);
+          }
+          speech(response);
+        }
+      });
+
+  }, 8000);
+}
+
+
+
+function sendMessage(message){
+  message = message.trim();
+  if (message.trim()!=""){
+    $('#transcription').val('');
+    console.log("message sent: " + message);
+    $('#result').fadeOut(450, function(){
+      $('#result').html('. . . &#9834  &#9834  &#9834 . . .');
+      $('#result').fadeIn(100);
+
+      if (message.length < 8 && message.indexOf('yes')==-1 && message.indexOf('no')==-1){
+        tooShort(message);
+        return;
+      } 
+
+      $.ajax({
+        url: 'patronus?Body='+ encodeURIComponent(message) + '&debug=true',
+        success: function(data){
+          console.log(data);
+          var temp = data.split('<id>');
+          var text_display = temp[0].trim().replace('@','');
+          if (temp.length > 1) { 
+            var yt_id = temp[1].trim();
+          }
+          $('#result').hide();
+          $('#result').html(text_display);
+          response = data;
+          if (response.lastIndexOf('@')>-1) {
+            response = response.substring(response.lastIndexOf('@')+1);
+          }
+          speech(response);
+          if (typeof($('.sentiment').css('color')) !== 'undefined') {
+          bg_color = $('.sentiment').css('color').replace(/\D/g,'');
+          bg_src = "img/" + bg_color + "bg.png";
+          bg_url = "url('img/" + bg_color + "bg.png')";
+          console.log(bg_url);
+          var body = $('body');
+          var img = $('<img>', {
+          src: bg_src
+          }).hide().appendTo(body).load(function() {
+          $(this).remove();
+          body.css('background-image', 'url('+bg_src+')');
+           $('#transcription').attr('placeholder','Feeling ' + $('.sentiment').html() +'? Tell me more.');
+          });
+          }
+          player.loadVideoById({videoId: yt_id, startSeconds: 1});
+          $('#result').fadeIn(300);
+          speaking = false;
+          setTimeout(function() {
+            recognizer = new window.SpeechRecognition();
+            recognizer.continuous = false;
+            recognizer.start();
+          }, 1500);
+        }
+      });
+    } 
+    );
+  }
+}
+$(document).ready(function() {
+  setInterval(function () {
+    recognizer = new window.SpeechRecognition();
+    recognizer.continuous = false;
+    recognizer.start();
+    recognizer.onresult = function(event) {
+      console.log('Starting recognition');
+      var message = event.results[event.results.length-1][0].transcript;
+      transcription.textContent += message;
+      lastword = message.substr(0, message.lastIndexOf(' '))
+      speaking = true;
+      console.log($('#transcription').val());
+      sendMessage(message);
+      lastword = "";
+      speaking = false;
+      if (speaking) {
+        transcription.textContent = '';
+        for (var i = event.resultIndex; i < event.results.length; i++) {
+          console.log(event.results[i][0].transcript)
+              //lastword = event.results[i][0].transcript;
+              transcription.textContent += event.results[i][0].transcript;
+            }
+          }
+        };
+      },  7000);
+});
+</script>
+
+</html>

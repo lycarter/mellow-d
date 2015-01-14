@@ -1,0 +1,137 @@
+  body{
+    margin: 5% !important;
+    font-family: 'Signika';
+    background: url(../img/musicBackground.jpg) no-repeat center center fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index:-1;
+  }
+  h1 {
+    color: white;
+  }
+  #result {
+    margin-top: 15px;
+    color: white;
+    font-size: 24pt !important;
+    display: none;
+  }
+  #transcription {
+    margin-top: 20px;
+    font-size: 26pt !important;
+    width: 80%;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 3px;
+    background: transparent;
+  }
+  textarea:focus {
+   outline: none !important;
+  }
+  .buttons{
+    margin-right: 10px;
+    display:none;
+  }
+  .facebook {
+    text-align: center; 
+    display: inline-block;}
+    .facebook input {
+      padding: 7px 0;
+      font-family: sans-serif;
+      font-size: 10px;
+      outline: none;
+      border: 1px solid #ddd;
+      width: 0;
+      margin: 0;
+      display: none; }
+      .facebook a, .facebook a:visited, .facebook a:active {
+        margin-top: 10px;
+        display: inline-block;
+        text-decoration: none;
+        background-color: #3f588e;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 300;
+        padding: 8px 16px 6px 30px;
+        background-image: url("../img/facebook-login.png");
+        background-repeat: no-repeat;
+        background-size: 30px;
+        background-position: 4px center;
+        border-bottom: 3px solid #283f6e; }
+        .facebook a:hover, .facebook a:visited:hover, .facebook a:active:hover {
+          opacity: 0.9;
+          cursor: pointer; }
+
+  .gmail {
+    text-align: center; 
+    display: inline-block;}
+    .gmail input {
+      padding: 7px 0;
+      font-family: sans-serif;
+      font-size: 10px;
+      outline: none;
+      border: 1px solid #ddd;
+      width: 0;
+      margin: 0;
+      display: none; }
+      .gmail a, .gmail a:visited, .gmail a:active {
+        margin-top: 10px;
+        display: inline-block;
+        text-decoration: none;
+        background-color: rgb(201, 44, 25);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 300;
+        padding: 8px 20px 6px 36px;
+        background-image: url("../img/gmail-login.png");
+        background-repeat: no-repeat;
+        background-size: 30px;
+        background-position: 4px center;
+        border-bottom: 3px solid rgb(180, 44, 25); }
+        .gmail a:hover, .gmail a:visited:hover, .gmail a:active:hover {
+          opacity: 0.9;
+          cursor: pointer; }
+
+  .spotify {
+    text-align: center; 
+    display: inline-block;}
+    .spotify input {
+      padding: 7px 0;
+      font-family: sans-serif;
+      font-size: 10px;
+      outline: none;
+      border: 1px solid #ddd;
+      width: 0;
+      margin: 0;
+      display: none; }
+      .spotify a, .spotify a:visited, .spotify a:active {
+        margin-top: 10px;
+        display: inline-block;
+        text-decoration: none;
+        background-color: rgb(44, 145, 25);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 300;
+        padding: 8px 20px 6px 36px;
+        background-image: url("../img/spotify-login.png");
+        background-repeat: no-repeat;
+        background-size: 30px;
+        background-position: 4px center;
+        border-bottom: 3px solid rgb(44, 125, 25); }
+        .spotify a:hover, .spotify a:visited:hover, .spotify a:active:hover {
+          opacity: 0.8;
+          cursor: pointer; }
+  .microphone {
+    margin-bottom: 10px;
+  }
+  .sentiment {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  }
+  .footer {
+    color:white;
+    font-size:8pt;
+    padding-top: 30px;
+  }

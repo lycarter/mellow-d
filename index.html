@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+  <title>Mellow-D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/favicon.png">
+  <link href="style/style.min.css" rel="stylesheet" media="screen">
+  <link href="style/style-responsive.min.css" rel="stylesheet">
+  <link href="style/main.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Signika:300normal,400normal,600normal,700normal' rel='stylesheet' type='text/css'>
+  <script src="javascripts/jquery-2.1.1.min.js"></script>
+  <script src="javascripts/urieowpq.js"></script>
+  <script src="javascripts/axscdvgnhm.js"></script>
+  <script src="javascripts/aodifugy.js"></script>
+  <script src="javascripts/acsvdbfn.js"></script>
+</head>
+
+<body>
+
+  <h1 id = 'logo'><img src = 'images/logoWhite2.png' width = '450'/></h1>
+  <br>
+
+  <h1 id = 'instruction'>Talk to me!  Or request a song.
+    <img class = 'microphone' src = 'images/mic-animate.gif' width = '40'/>
+  </h1>
+  <div class = 'welcome-container' style = 'font-size: 16pt; color: white'>
+    <span id = 'propic'></span> <span class = 'welcome'></span> &nbsp; &nbsp; &nbsp;
+  </div>
+  <br>
+  <div class = 'buttons'>
+    <span id = 'analysis' style = 'font-size: 16pt; color: white'> Want more accurate analysis? </span> &nbsp; &nbsp; 
+    <div class = "facebook" onclick="fb_login();">   <a>Connect</a></div> &nbsp; &nbsp; 
+    <div class = "gmail"    onclick="gmail_login();"><a>Log in</a></div> &nbsp; &nbsp; 
+    <div class = "kerberos"  onclick="mit_login()"> <a>Log in</a>  </div> &nbsp; &nbsp;  
+    <div class = "spotify"    onclick="spotify_login();"><a>Import</a></div> &nbsp; &nbsp; 
+  </div>
+
+  <textarea display = "none" id="transcription" rows="3" cols="75" maxlength = "140"
+  placeholder="How are you feeling? Tell me about your day."></textarea>
+
+  <div id="result"></div>
+
+  <div id="player"></div>
+  <script src="https://www.youtube.com/player_api"></script>
+  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+  <span id="ws-unsupported" class="hidden">API not supported</span>
+
+  <div class = 'footer'>Conceived and created by Landon Carter, Lauren Huang, Runpeng Liu, and Kyle Saleeby (MIT '17)</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57039341-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+<script>
+var _0xfd46=["","\x20","\x73\x70\x6C\x69\x74","\x49\x20\x49\x27\x6D\x20\x66\x65\x65\x6C\x20\x66\x65\x65\x6C\x69\x6E\x67\x20\x79\x65\x73\x20\x6E\x6F\x20\x6E\x6F\x70\x65\x20\x73\x75\x72\x65\x20\x79\x65\x61\x20\x79\x65\x61\x68\x20\x77\x65\x6C\x6C\x20\x70\x6C\x61\x79\x20\x63\x68\x61\x6E\x67\x65\x20\x70\x6C\x65\x61\x73\x65\x20\x77\x68\x6F\x20\x6E\x6F\x74\x20\x67\x72\x65\x61\x74\x20\x6F\x6B\x61\x79\x20\x67\x6F\x6F\x64","\x74\x72\x61\x6E\x73\x63\x72\x69\x70\x74\x69\x6F\x6E","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x67\x65\x74\x56\x6F\x69\x63\x65\x73","\x66\x62\x41\x73\x79\x6E\x63\x49\x6E\x69\x74","\x37\x31\x32\x38\x37\x39\x36\x34\x32\x31\x33\x32\x36\x33\x33","\x76\x32\x2E\x31","\x69\x6E\x69\x74","\x67\x65\x74\x4C\x6F\x67\x69\x6E\x53\x74\x61\x74\x75\x73","\x73\x63\x72\x69\x70\x74","\x66\x61\x63\x65\x62\x6F\x6F\x6B\x2D\x6A\x73\x73\x64\x6B","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65","\x69\x6E\x73\x65\x72\x74\x42\x65\x66\x6F\x72\x65","\x70\x61\x72\x65\x6E\x74\x4E\x6F\x64\x65","\x73\x72\x63","\x69\x64","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x2F\x2F\x63\x6F\x6E\x6E\x65\x63\x74\x2E\x66\x61\x63\x65\x62\x6F\x6F\x6B\x2E\x6E\x65\x74\x2F\x65\x6E\x5F\x55\x53\x2F\x73\x64\x6B\x2E\x6A\x73\x23\x78\x66\x62\x6D\x6C\x3D\x31\x26\x61\x70\x70\x49\x64\x3D\x37\x31\x32\x38\x37\x39\x36\x34\x32\x31\x33\x32\x36\x33\x33\x26\x76\x65\x72\x73\x69\x6F\x6E\x3D\x76\x32\x2E\x30","\x73\x65\x74\x54\x69\x6D\x65\x6F\x75\x74","\x63\x6C\x65\x61\x72\x54\x69\x6D\x65\x6F\x75\x74","\x53\x70\x65\x65\x63\x68\x52\x65\x63\x6F\x67\x6E\x69\x74\x69\x6F\x6E","\x77\x65\x62\x6B\x69\x74\x53\x70\x65\x65\x63\x68\x52\x65\x63\x6F\x67\x6E\x69\x74\x69\x6F\x6E","\x63\x6F\x6E\x74\x69\x6E\x75\x6F\x75\x73","\x73\x74\x61\x72\x74","\x6F\x6E\x72\x65\x73\x75\x6C\x74","\x53\x74\x61\x72\x74\x69\x6E\x67\x20\x72\x65\x63\x6F\x67\x6E\x69\x74\x69\x6F\x6E","\x6C\x6F\x67","\x74\x72\x61\x6E\x73\x63\x72\x69\x70\x74","\x6C\x65\x6E\x67\x74\x68","\x72\x65\x73\x75\x6C\x74\x73","\x74\x65\x78\x74\x43\x6F\x6E\x74\x65\x6E\x74","\x6C\x61\x73\x74\x49\x6E\x64\x65\x78\x4F\x66","\x73\x75\x62\x73\x74\x72","\x76\x61\x6C","\x23\x74\x72\x61\x6E\x73\x63\x72\x69\x70\x74\x69\x6F\x6E","\x77\x68\x69\x63\x68","\x6B\x65\x79\x70\x72\x65\x73\x73","\x72\x65\x61\x64\x79","\x6C\x6F\x63\x61\x74\x69\x6F\x6E","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x6C\x69\x75\x34\x32\x2E\x73\x63\x72\x69\x70\x74\x73\x2E\x6D\x69\x74\x2E\x65\x64\x75\x2F\x6D\x65\x6C\x6C\x6F\x77\x2D\x44"];var player,gender,name,recognizer,lastword=_0xfd46[0],speaking=!1,startListening=_0xfd46[3][_0xfd46[2]](_0xfd46[1]),transcription=document[_0xfd46[5]](_0xfd46[4]),voices=speechSynthesis[_0xfd46[6]]();window[_0xfd46[7]]=function (){FB[_0xfd46[10]]({appId:_0xfd46[8],cookie:!0,xfbml:!0,version:_0xfd46[9],status:!0});FB[_0xfd46[11]](function (_0x457dxa){statusChangeCallback(_0x457dxa);} );} ;(function (_0x457dxa,_0x457dxb,_0x457dxc){var _0x457dxd=_0x457dxa[_0xfd46[14]](_0x457dxb)[0];_0x457dxa[_0xfd46[5]](_0x457dxc)||(_0x457dxa=_0x457dxa[_0xfd46[19]](_0x457dxb),_0x457dxa[_0xfd46[18]]=_0x457dxc,_0x457dxa[_0xfd46[17]]=_0xfd46[20],_0x457dxd[_0xfd46[16]][_0xfd46[15]](_0x457dxa,_0x457dxd));} )(document,_0xfd46[12],_0xfd46[13]);function clearAllTimeouts(){for(var _0x457dxa=window[_0xfd46[21]](function (){} ,0);_0x457dxa--;){window[_0xfd46[22]](_0x457dxa);} ;} ;window[_0xfd46[23]]=window[_0xfd46[23]]||window[_0xfd46[24]]||null;recognizer= new window[_0xfd46[23]];recognizer[_0xfd46[25]]=!1;recognizer[_0xfd46[26]]();recognizer[_0xfd46[27]]=function (_0x457dxa){console[_0xfd46[29]](_0xfd46[28]);_0x457dxa=_0x457dxa[_0xfd46[32]][_0x457dxa[_0xfd46[32]][_0xfd46[31]]-1][0][_0xfd46[30]];transcription[_0xfd46[33]]+=_0x457dxa;lastword=_0x457dxa[_0xfd46[35]](0,_0x457dxa[_0xfd46[34]](_0xfd46[1]));speaking=!0;sendMessage($(_0xfd46[37])[_0xfd46[36]]());lastword=_0xfd46[0];speaking=!1;} ;$(document)[_0xfd46[39]](function (_0x457dxa){13==_0x457dxa[_0xfd46[38]]&&sendMessage($(_0xfd46[37])[_0xfd46[36]]());} );$(document)[_0xfd46[40]](function (){setInterval(function (){recognizer= new window[_0xfd46[23]];recognizer[_0xfd46[25]]=!1;recognizer[_0xfd46[26]]();recognizer[_0xfd46[27]]=function (_0x457dxa){console[_0xfd46[29]](_0xfd46[28]);_0x457dxa=_0x457dxa[_0xfd46[32]][_0x457dxa[_0xfd46[32]][_0xfd46[31]]-1][0][_0xfd46[30]];transcription[_0xfd46[33]]+=_0x457dxa;lastword=_0x457dxa[_0xfd46[35]](0,_0x457dxa[_0xfd46[34]](_0xfd46[1]));speaking=!0;console[_0xfd46[29]]($(_0xfd46[37])[_0xfd46[36]]());sendMessage(_0x457dxa);lastword=_0xfd46[0];speaking=!1;} ;} ,7E3);} );function mit_login(){window[_0xfd46[41]]=_0xfd46[42];} ;
+</script>
+
+</html>
